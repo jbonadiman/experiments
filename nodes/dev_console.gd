@@ -38,11 +38,10 @@ func _move_caret_to_end():
 	text_input.caret_column = text_input.text.length()
 
 
-func _set_history(direction: history_direction):
-	if history.size() == 0: return
+func _navigate_history(direction: history_direction) -> String:
+	if history.size() == 0: return ""
 	history_index = clamp(history_index + direction, 0, history.size() - 1)
-	text_input.text = history[history_index]
-	_move_caret_to_end()
+	return history[history_index]
 
 
 func _print_result(message: String) -> void:
@@ -65,10 +64,10 @@ func _on_text_input_gui_input(event: InputEvent) -> void:
 		text_input.clear()
 
 	elif event.is_action_released("console_previous"):
-		_set_history(history_direction.PREVIOUS)
+		text_input.text = _navigate_history(history_direction.PREVIOUS)
 
 	elif event.is_action_released("console_next"):
-		_set_history(history_direction.NEXT)
+		_navigate_history(history_direction.NEXT)
 
 	elif event.is_action_released("console_autocomplete"):
 		if text_input.text.is_empty(): return
