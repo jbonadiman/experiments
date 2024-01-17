@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp3cl60b8k7ek"]
+
+[ext_resource type="Shader" path="res://shaders/voronoi.gdshader" id="1_g1qvo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5h71d"]
+shader = ExtResource("1_g1qvo")
+shader_parameter/resolution = Vector2(600, 400)
+shader_parameter/color_a = Color(0.211765, 0.0392157, 0.0392157, 1)
+shader_parameter/color_b = Color(0.478431, 0.427451, 0.423529, 1)
+shader_parameter/color_c = Color(0.858824, 0.270588, 0.756863, 1)
+shader_parameter/color_d = Color(0.04, 0.04, 0.04, 1)
+
+[node name="Voronoi" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_5h71d")
+offset_right = 600.0
+offset_bottom = 400.0
