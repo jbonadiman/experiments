@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl5hc7lkxeeck"]
+
+[ext_resource type="Script" path="res://nodes/dev_console.gd" id="1_wwlme"]
+
+[node name="DevConsole" type="CanvasLayer"]
+script = ExtResource("1_wwlme")
+
+[node name="Container" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 357.0
+grow_horizontal = 2
+
+[node name="Background" type="ColorRect" parent="Container"]
+layout_mode = 2
+color = Color(1, 1, 1, 0.0941176)
+
+[node name="Contents" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+
+[node name="Console" type="RichTextLabel" parent="Container/Contents"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 320)
+layout_mode = 2
+bbcode_enabled = true
+
+[node name="TextInput" type="LineEdit" parent="Container/Contents"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+placeholder_text = "Type in something..."
+
+[connection signal="gui_input" from="Container/Contents/TextInput" to="." method="_on_text_input_gui_input"]
